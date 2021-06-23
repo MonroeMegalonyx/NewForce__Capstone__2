@@ -1,4 +1,4 @@
-# GRDBKS: A local all-in-one learning management system (LMS)
+# GRDBKS: An all-in-one learning management system (LMS) for teachers
 
 ## Capstone Project for second three months of NewForce
 [NewForce](https://newforce.co/) is an intensive full-time 6-month software development immersive training program in WV focusing on full stack (C#/.NET) development fundamentals and problem solving. The final half of the program is executed in a simulated company environment with Scrum methodology.
