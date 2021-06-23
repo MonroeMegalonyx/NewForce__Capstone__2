@@ -38,15 +38,15 @@ My first capstone project focused on client side tools to build a React applicat
 1. Install your dependencies by running `npm install` from the same directory as your `package.json` file
 
 ## Design
-For this project, our team utilized both a wireframe and ERD to plan the final app design. Before building a full stack application, we worked in teams to develop a prototype in C# in the command line, then built a server side application using ASP.NET Core MVC before refactoring into the current full stack project in this repository.
+For this project, I utilized both a digital wireframe and ERD to plan the final app design.
 
 |![ERD](/images/ERD.png)|
 |---|
-| *ERD of our database.* |
+| *ERD of my database.* |
 
 |![Wireframe](/images/Wireframe.png)|
 |---|
-| *Wireframe made using only whiteboard tools to plan layout and UX of application.* |
+| *Wireframe made to plan layout and UX of application.* |
 ## Features
 
 ### Server Side - API
