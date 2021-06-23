@@ -3,7 +3,7 @@
 ## Capstone Project for second three months of NewForce
 [NewForce](https://newforce.co/) is an intensive full-time 6-month software development immersive training program in WV focusing on full stack (C#/.NET) development fundamentals and problem solving. The final half of the program is executed in a simulated company environment with Scrum methodology.
 
-During the final 2 week sprint of this apprenticeship I designed and executed a capstone project built using a full stuck environment including ASP.NET, MVC, and Razor templates in Visual Studio 2019, RESTful Web API with C#/.NET Core, and Javascript/React client application with 3rd party authentication.
+During the final 2 week sprint of this apprenticeship I designed and executed a capstone project built using a full stack environment including ASP.NET, MVC, and Razor templates in Visual Studio 2019, RESTful Web API with C#/.NET Core, and Javascript/React client application with 3rd party authentication.
 
 There are so many platforms available that a teacher usually has to spend time learning how to use their school’s chosen LMS with each new job or as the district switches contracts to different companies every few years. Teachers rarely learn how to fully take advantage of their LMS capabilities because of this turnover and if they move jobs to a new district they will lose all their previous work stored in their previous LMS. 
 
