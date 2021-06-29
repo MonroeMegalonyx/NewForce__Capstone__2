@@ -14,7 +14,19 @@ Teachers can also take GRDBKS with them to a new job, so their previous body of 
 My first capstone project focused on client side tools to build a React application can be found [here](https://github.com/MonroeMegalonyx/NewForce__Capstone__1).
 
 ## Setup
+__Initial setup__
+Using directions from the [Web API tutorial](https://github.com/NewForce-at-Mountwest/bangazon-inc/blob/master/book-3-web-api/chapters/ASP_NET_WEB_API_INTRO.md) and for [Firebase Authentication](https://github.com/NewForce-at-Mountwest/bangazon-inc/blob/master/book-3-web-api/chapters/FIREBASE_AUTH.md), I created a new project in Visual Studio 2019.
+1. Run the SQL script to create tables and prepopulate data.
 
+1. Open Visual Studio and select "Create a new project". In the "Create a new project" dialog, choose the "ASP.NET Core Web API" option for C#
+
+1. Name the project and chose a folder location.
+
+1. The new project will open automatically. Then in "Solution Explorer", right click the name of the project and select "Manage Nuget Packages". Install the `Microsoft.Data.SqlClient` and `Microsoft.AspNetCore.Authentication.JwtBearer` packages. I now have an ASP.NET Core Web API project!
+
+1. Update the `appsettings.json` file to contain the database connection string.
+
+__Current Project Setup__
 1. Pull down this repo
 
 1. Run the two scripts that are in the SQL folder. These will create the Tabloid database and add some test data. The database it creates is identitical to the prototype from the last MVC sprint, except now we're capturing the `FirebaseUserId` in the UserProfile table
