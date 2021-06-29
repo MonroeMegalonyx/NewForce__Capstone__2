@@ -28,7 +28,7 @@ Using directions from the [Web API tutorial](https://github.com/NewForce-at-Moun
 
 1. Update the `appsettings.json` file to contain the database connection string.
 
-1. 
+1. Update the Configure method in `Startup.cs` so that while in development the app won't throw CORS errors.
 
 __Current Project Setup__
 1. To recreate this application on your device, first pull down this repository.
