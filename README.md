@@ -28,7 +28,24 @@ Using directions from the [Web API tutorial](https://github.com/NewForce-at-Moun
 
 1. Update the `appsettings.json` file to contain the database connection string.
 
-1. Update the Configure method in `Startup.cs` so that while in development the app won't throw CORS errors.
+1. Now create the client side application. Make a new folder `client` inside the project directory and build a new react application using `npx create-react-app .`
+
+1. Update the Configure method in `Startup.cs` so that while in development the app won't throw CORS errors. This can also be handled by adding a proxy property to the package.json on the client side. When using a proxy, the API URL is already stated and can be abbreviated in the provider scripts. If using CORS handling server side, then the API URL should be written out in full with the client provider scripts.
+
+1. Add Firebase authentication by first creating a project in Firebase and adding some users.
+
+1. Update the appsettings.json file to add a "FirebaseProjectId" key. Make the value of this key the Firebase project id.
+
+1. Add a new `.env.local` file to the client director and add the Firebase API Key as REACT_APP_API_KEY="". Add this key path to the `firebaseConfig` in `index.js` for the client.
+
+1. Use `npm` to install firebase and bootstrap into the client project folder `npm install --save bootstrap reactstrap firebase`
+
+Some basic steps for the React Client App to add authentication: 
+- Create a UserProfileProvider component and a UserProfileContext context in a UserProfileProvider.js file.
+- Add login, logout and register functions to the UserProfileProvider.
+- Add an isLoggedIn boolean to the UserProfileProvider's state.
+- Update fetch() calls throughout the app to include an Authorization header that uses the Firebase token.
+
 
 __Current Project Setup__
 1. To recreate this application on your device, first pull down this repository.
@@ -39,19 +56,15 @@ __Current Project Setup__
 
    - Go to [Firebase](https://console.firebase.google.com/u/0/) and add a new project. You can name it whatever you want (Tabloid is a good name)
    - Go to the Authentication tab, click "Set up sign in method", and enable the Username and Password option.
-   - Add at least two new users in firebase. Use email addresses that you find in the UserProfile table of your SQL Server database
-   - Once firebase creates a UID for these users, copy the UID from firebase and update the `FirebaseUserId` column for the same users in your SQL Server database.
+   - Add at least two new users in Firebase. Use email addresses that you find in the UserProfile table of your SQL Server database
+   - Once Firebase creates a UID for these users, copy the UID from Firebase and update the `FirebaseUserId` column for the same users in your SQL Server database.
    - Click the Gear icon in the sidebar to go to Project Settings. You'll need the information on this page for the next few steps
 
-1. Go to the `appSettings.Local.json.example` file. Replace the value for FirebaseProjectId with your own
+1. Go to the `appSettings.json` file. Replace the value for FirebaseProjectId with your own.
 
-1. Rename the `appSettings.Local.json.example` file to remove the `.example` extension. This file should now just be called `appSettings.Local.json`
+1. Open your `client` directory in VSCode. Create a `.env.local` file and add your own Firebase Web API Key as REACT_APP_API_KEY="".
 
-1. Open your `client` directory in VsCode. Open the `.env.local.example` file and replace `__YOUR_API_KEY_HERE__` with your own firebase Web API Key
-
-1. Rename the `.env.local.example` file to remove the `.example` extension. This file should now just be called `.env.local`
-
-1. Install your dependencies by running `npm install` from the same directory as your `package.json` file
+1. Install missing dependencies by running `npm install` from the same directory as the `package.json` file.
 
 ## Design
 For this project, I utilized both a digital wireframe and ERD to plan the final app design.
