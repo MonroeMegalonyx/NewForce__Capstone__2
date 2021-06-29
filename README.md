@@ -24,12 +24,16 @@ Using directions from the [Web API tutorial](https://github.com/NewForce-at-Moun
 
 1. The new project will open automatically. Then in "Solution Explorer", right click the name of the project and select "Manage Nuget Packages". Install the `Microsoft.Data.SqlClient` and `Microsoft.AspNetCore.Authentication.JwtBearer` packages. I now have an ASP.NET Core Web API project!
 
+1. __Write__ and execute the database creation script and seed data script. The database design is shown in the ERD below. 
+
 1. Update the `appsettings.json` file to contain the database connection string.
 
-__Current Project Setup__
-1. Pull down this repo
+1. 
 
-1. Run the two scripts that are in the SQL folder. These will create the Tabloid database and add some test data. The database it creates is identitical to the prototype from the last MVC sprint, except now we're capturing the `FirebaseUserId` in the UserProfile table
+__Current Project Setup__
+1. To recreate this application on your device, first pull down this repository.
+
+1. Run the two scripts that are in the SQL folder. These will create the LMS database and add some testing data.
 
 1. Create a Firebase project for authentication:
 

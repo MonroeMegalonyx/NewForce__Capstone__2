@@ -34,7 +34,8 @@ CREATE TABLE [Student] (
   [FirstName] NVARCHAR(255) NOT NULL,
   [LastName] NVARCHAR(255) NOT NULL,
   [Email] NVARCHAR(255) NOT NULL,
-  [ProfileImage] NVARCHAR(255)
+  [ProfileImage] NVARCHAR(255),
+  [ClassId] INTEGER NOT NULL
 )
 GO
 
@@ -78,5 +79,5 @@ GO
 ALTER TABLE [Class] ADD FOREIGN KEY ([TeacherId]) REFERENCES [UserProfile] ([Id])
 GO
 
-ALTER TABLE [Student] ADD FOREIGN KEY ([Id]) REFERENCES [Class] ([Id])
+ALTER TABLE [Student] ADD FOREIGN KEY ([ClassId]) REFERENCES [Class] ([Id])
 GO
