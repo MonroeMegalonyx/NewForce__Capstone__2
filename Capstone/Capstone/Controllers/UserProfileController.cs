@@ -2,9 +2,11 @@
 using System;
 using Capstone.Models;
 using Capstone.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserProfileController : ControllerBase

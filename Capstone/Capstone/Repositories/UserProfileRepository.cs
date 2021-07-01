@@ -37,7 +37,7 @@ namespace Capstone.Repositories
                             LastName = DbUtils.GetString(reader, "LastName"),
                             UserName = DbUtils.GetString(reader, "UserName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            ProfileImage = DbUtils.GetString(reader, "ProfileImage"),
+                            ProfileImage = DbUtils.GetNullableString(reader, "ProfileImage"),
                         };
                     }
                     reader.Close();
