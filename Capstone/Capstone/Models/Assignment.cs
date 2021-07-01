@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Capstone.Models
 {
-    public class Class
+    public class Assignment
     {
         public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
-        
-        [DisplayName("Teacher")]
+
         [Required]
-        public int TeacherId { get; set; }
-        public UserProfile UserProfile { get; set; }
+        public string Instructions { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime? Begin { get; set; }
+        public DateTime? DueDate { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime? End { get; set; }
+        [DisplayName("Classroom")]
+        [Required]
+        public int ClassId { get; set; }
+        public Class Class { get; set; }
 
     }
 }

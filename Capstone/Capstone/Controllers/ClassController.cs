@@ -25,12 +25,12 @@ namespace Capstone.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _classRepository.GetAllByTeacher(id);
-            if (post == null)
+            var classroom = _classRepository.GetAllByTeacher(id);
+            if (classroom == null)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(classroom);
         }
     }
 }
