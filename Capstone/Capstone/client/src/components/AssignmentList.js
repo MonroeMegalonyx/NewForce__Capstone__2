@@ -10,10 +10,9 @@ const AssignmentList = () => {
   const { classroomId } = useParams();
 
   useEffect(() => {
-    getClassAssignments(1);
+    getClassAssignments(classroomId);
   }, []);
 
-  console.log(classroomId)
   return (
     <div className="container">
       <div className="row justify-content-center">

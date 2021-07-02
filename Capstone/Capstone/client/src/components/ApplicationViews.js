@@ -16,7 +16,7 @@ export default function ApplicationViews() {
           {isLoggedIn ? <ClassroomList /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/classes/(\d+)" exact>
+        <Route path="/classes/:classroomId(\d+)" exact>
           {isLoggedIn ? <AssignmentList /> : <Redirect to="/login" />}
         </Route>
 
