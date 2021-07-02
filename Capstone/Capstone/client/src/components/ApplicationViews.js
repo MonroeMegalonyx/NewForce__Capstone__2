@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import ClassroomList from "./ClassroomList";
 import AssignmentList from "./AssignmentList";
+import AssignmentForm from "./AssignmentForm";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -18,6 +19,10 @@ export default function ApplicationViews() {
 
         <Route path="/classes/:classroomId(\d+)" exact>
           {isLoggedIn ? <AssignmentList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/assignments/new" exact>
+          {isLoggedIn ? <AssignmentForm /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

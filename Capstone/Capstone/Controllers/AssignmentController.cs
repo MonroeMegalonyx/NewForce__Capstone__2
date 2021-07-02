@@ -1,4 +1,5 @@
-﻿using Capstone.Repositories;
+﻿using Capstone.Models;
+using Capstone.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,14 @@ namespace Capstone.Controllers
                 return NotFound();
             }
             return Ok(assignment);
+        }
+
+        // POST api/<AssignmentController>
+        [HttpPost]
+        public IActionResult Add(Assignment assignment)
+        {
+            _assignmentRepository.AddAssignment(assignment);
+            return CreatedAtAction("Get", new { id = assignment.Id }, assignment);
         }
     }
 }
