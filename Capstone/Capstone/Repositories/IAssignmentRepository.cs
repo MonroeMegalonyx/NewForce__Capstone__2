@@ -7,5 +7,6 @@ namespace Capstone.Repositories
     {
         List<Assignment> GetAllByClass(int classId);
         void AddAssignment(Assignment assignment);
+        void DeleteAssignment(int assignmentId);
     }
 }

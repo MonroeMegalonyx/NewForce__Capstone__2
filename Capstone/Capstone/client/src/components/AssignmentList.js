@@ -22,7 +22,7 @@ const AssignmentList = () => {
 
       <div className="row justify-content-center">
         <div className="cards-column">
-          {assignments.map((assignment) => (
+          {assignments?.map((assignment) => (
               <Assignment key={assignment.id} assignment={assignment} />
             ))}
         </div>

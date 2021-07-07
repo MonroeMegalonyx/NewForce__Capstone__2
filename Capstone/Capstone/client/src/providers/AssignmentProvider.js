@@ -34,12 +34,24 @@ export function AssignmentProvider(props) {
     );
   };
 
+  const deleteAssignment = (id, classId) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(getClassAssignments(`${classId}`))
+    );
+  };
+
   return (
     <AssignmentContext.Provider
       value={{
         assignments,
         getClassAssignments,
-        addAssignment
+        addAssignment,
+        deleteAssignment
       }}
     >
       {props.children}

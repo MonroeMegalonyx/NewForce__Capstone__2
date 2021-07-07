@@ -40,5 +40,13 @@ namespace Capstone.Controllers
             _assignmentRepository.AddAssignment(assignment);
             return CreatedAtAction("Get", new { id = assignment.Id }, assignment);
         }
+
+        // DELETE api/<AssignmentController>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _assignmentRepository.DeleteAssignment(id);
+            return NoContent();
+        }
     }
 }
