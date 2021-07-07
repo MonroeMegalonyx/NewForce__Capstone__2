@@ -157,6 +157,8 @@ namespace Capstone.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
+                            DELETE FROM StudentAssignment
+                            WHERE AssignmentId = @id;
                             DELETE FROM Assignment
                             WHERE Id = @id
                         ";
