@@ -31,7 +31,8 @@ const Assignment = ({ assignment }) => {
     <Card className="m-4">
       <p className="text-left px-2">{assignment.name}</p>
       <CardBody>
-        {/* Can only delete assignments not used in other tables already */}
+      <Button onClick={() => history.push(`/assignments/edit/${assignment.id}`)}>Edit assignment</Button>
+
       <Button onClick={handleDelete}>Delete assignment</Button>
 
       {/* <Button onClick={() => history.push(`/assignments/${assignment.id}`)}>

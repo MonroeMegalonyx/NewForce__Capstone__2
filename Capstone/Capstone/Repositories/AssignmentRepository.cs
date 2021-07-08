@@ -43,85 +43,40 @@ namespace Capstone.Repositories
             }
         }
 
-        //public List<Post> GetAllPostsByUser(int userProfileId)
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //               SELECT p.Id, p.Title, p.Content, 
-        //                      p.ImageLocation AS HeaderImage,
-        //                      p.CreateDateTime, p.PublishDateTime, p.IsApproved,
-        //                      p.CategoryId, p.UserProfileId,
-        //                      c.[Name] AS CategoryName,
-        //                      u.FirstName, u.LastName, u.DisplayName, 
-        //                      u.Email, u.CreateDateTime, u.ImageLocation AS AvatarImage,
-        //                      u.UserTypeId, 
-        //                      ut.[Name] AS UserTypeName
-        //                 FROM Post p
-        //                      LEFT JOIN Category c ON p.CategoryId = c.id
-        //                      LEFT JOIN UserProfile u ON p.UserProfileId = u.id
-        //                      LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-        //                WHERE p.UserProfileId = @userProfileId";
+        public Assignment GetAssignment(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                       SELECT a.Id, a.[Name] AS AssignmentName, a.Instructions, 
+                              a.DueDate, a.ClassId,
+                              c.[Name] AS ClassroomName, c.TeacherId, c.[Begin] AS FirstDay, c.[End] AS LastDay,
+                               up.FirebaseId, up.FirstName, up.LastName, up.UserName, 
+                               up.Email, up.ProfileImage
+                         FROM Assignment a
+                              LEFT JOIN Class c ON a.classId = c.id
+                              LEFT JOIN UserProfile up ON c.TeacherId = up.Id
+                        WHERE a.Id = @Id";
 
-        //            cmd.Parameters.AddWithValue("@userProfileId", userProfileId);
-        //            var reader = cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    var reader = cmd.ExecuteReader();
 
-        //            var posts = new List<Post>();
+                    Assignment assignment = null;
 
-        //            while (reader.Read())
-        //            {
-        //                posts.Add(NewPostFromReader(reader));
-        //            }
+                    if (reader.Read())
+                    {
+                        assignment = NewAssignmentFromReader(reader);
+                    }
 
-        //            reader.Close();
+                    reader.Close();
 
-        //            return posts;
-        //        }
-        //    }
-        //}
-
-        //public Post GetSinglePostById(int id)
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //               SELECT p.Id, p.Title, p.Content, 
-        //                      p.ImageLocation AS HeaderImage,
-        //                      p.CreateDateTime, p.PublishDateTime, p.IsApproved,
-        //                      p.CategoryId, p.UserProfileId,
-        //                      c.[Name] AS CategoryName,
-        //                      u.FirstName, u.LastName, u.DisplayName, 
-        //                      u.Email, u.CreateDateTime, u.ImageLocation AS AvatarImage,
-        //                      u.UserTypeId, 
-        //                      ut.[Name] AS UserTypeName
-        //                 FROM Post p
-        //                      LEFT JOIN Category c ON p.CategoryId = c.id
-        //                      LEFT JOIN UserProfile u ON p.UserProfileId = u.id
-        //                      LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-        //                WHERE p.id = @Id";
-
-        //            cmd.Parameters.AddWithValue("@id", id);
-        //            var reader = cmd.ExecuteReader();
-
-        //            Post post = null;
-
-        //            if (reader.Read())
-        //            {
-        //                post = NewPostFromReader(reader);
-        //            }
-
-        //            reader.Close();
-
-        //            return post;
-        //        }
-        //    }
-        //}
+                    return assignment;
+                }
+            }
+        }
 
         public void AddAssignment(Assignment assignment)
         {
@@ -170,35 +125,33 @@ namespace Capstone.Repositories
             }
         }
 
-        //public void EditPost(Post post)
-        //{
-        //    using (SqlConnection conn = Connection)
-        //    {
-        //        conn.Open();
+        public void EditAssignment(Assignment assignment)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
 
-        //        using (SqlCommand cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                    UPDATE Post
-        //                    SET 
-        //                        Title = @title, 
-        //                        Content = @content, 
-        //                        CategoryId = @categoryid, 
-        //                        ImageLocation = @headerimage,
-        //                        PublishDateTime = @PublishDateTime
-        //                    WHERE Id = @id";
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE Assignment
+                            SET 
+                                [Name] = @Name, 
+                                Instructions = @Instructions, 
+                                DueDate = @DueDate, 
+                                ClassId = @ClassId
+                            WHERE Id = @id";
 
-        //            cmd.Parameters.AddWithValue("@title", post.Title);
-        //            cmd.Parameters.AddWithValue("@content", post.Content);
-        //            cmd.Parameters.AddWithValue("@categoryid", post.CategoryId);
-        //            cmd.Parameters.AddWithValue("@headerimage", DbUtils.ValueOrDBNull(post.ImageLocation));
-        //            cmd.Parameters.AddWithValue("@PublishDateTime", DbUtils.ValueOrDBNull(post.PublishDateTime));
-        //            cmd.Parameters.AddWithValue("@id", post.Id);
+                    cmd.Parameters.AddWithValue("@Name", assignment.Name);
+                    cmd.Parameters.AddWithValue("@Instructions", assignment.Instructions);
+                    cmd.Parameters.AddWithValue("@DueDate", DbUtils.ValueOrDBNull(assignment.DueDate));
+                    cmd.Parameters.AddWithValue("@ClassId", assignment.ClassId);
+                    cmd.Parameters.AddWithValue("@id", assignment.Id);
 
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         private Assignment NewAssignmentFromReader(SqlDataReader reader)
         {

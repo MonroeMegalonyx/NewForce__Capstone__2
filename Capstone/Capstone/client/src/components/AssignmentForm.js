@@ -6,11 +6,9 @@ import { useParams, useHistory } from "react-router-dom";
 import Button from "reactstrap/lib/Button";
 
 
-// Consider: What is different when we add an post vs. edit? In edit mode, we should have an postId in the URL. Otherwise, it is a new post.
-
 const AssignmentForm = () => {
   // Get the content for assignments to add or edit
-  const { addAssignment } = useContext(AssignmentContext);
+  const { getSingleAssignment, editAssignment } = useContext(AssignmentContext);
   // Get the categories for a dropdown selector in form
   const { classrooms, getTeachersClasses } = useContext(ClassroomContext);
 
@@ -72,13 +70,13 @@ const AssignmentForm = () => {
       if (assignmentId){
         // PUT - update
         
-        // editPost(postId, newPost).then(() => history.push(`/posts/details/${postId}`))
+        editAssignment(assignmentId, newAssignment).then(() => history.push(`/`));
       } else {
         // POST - add
 
-        newAssignment.userProfileId = loggedInTeacherId;
-        // Now add the new Assignment with the author and created time data
-        addAssignment(newAssignment).then(() => history.push("/"));
+        // newAssignment.userProfileId = loggedInTeacherId;
+        // // Now add the new Assignment with the author and created time data
+        // addAssignment(newAssignment).then(() => history.push("/"));
       }
     }
   };
@@ -87,25 +85,18 @@ const AssignmentForm = () => {
   useEffect(() => {
     getTeachersClasses(loggedInTeacherId).then(() => {
       if (assignmentId){
-        // getSinglePost(postId)
-        // .then(post => {
-        //   setPostState(post)
-        //     setIsLoading(false)
-        // })
+        getSingleAssignment(assignmentId)
+        .then(assignment => {
+          console.log(assignment)
+          setAssignment(assignment)
+            setIsLoading(false)
+        })
       } else {
         setIsLoading(false)
       }
     });
   }, []);
 
-  // Hack to wait for server to give id then redirect to the details page, using a .then in the submit function did not let the response state update in time to redirect
-
-  // if (response > 0) {
-  //   //console.log(response);
-  //   //reset response
-  //   //setResponse(0);
-  //   return <Redirect to={'/posts/details/'+response} />;
-  // } else {
     return (
       <form className="assignmentForm">
         {assignmentId ? <h2 className="assignmentForm__title">Edit Assignment</h2> : <h2 className="assignmentForm__title">New Assignment</h2>}
@@ -178,7 +169,7 @@ const AssignmentForm = () => {
         <Button className="btn btn-primary" disabled={isLoading} onClick={handleClickSave}>
         {assignmentId ? <>Save Assignment</> : <>Add Assignment</>}
         </Button>
-        <Button onClick={() => history.push(`classes/`)}>Cancel</Button>
+        <Button onClick={() => history.push(`/`)}>Cancel</Button>
       </form>
     );
   };

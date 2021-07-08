@@ -25,6 +25,10 @@ export default function ApplicationViews() {
           {isLoggedIn ? <AssignmentForm /> : <Redirect to="/login" />}
         </Route>
 
+        <Route path="/assignments/edit/:assignmentId(\d+)" exact>
+          {isLoggedIn ? <AssignmentForm /> : <Redirect to="/login" />}
+        </Route>
+
         <Route path="/login">
           <Login />
         </Route>

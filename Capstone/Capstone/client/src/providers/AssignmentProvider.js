@@ -21,6 +21,17 @@ export function AssignmentProvider(props) {
     );
   };
 
+  const getSingleAssignment = (id) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}?id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+    );
+  }
+
   const addAssignment = (assignment) => {
     return getToken().then((token) =>
       fetch(`${apiUrl}/`, {
@@ -45,13 +56,28 @@ export function AssignmentProvider(props) {
     );
   };
 
+  const editAssignment = (id, assignment) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}/${id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(assignment),
+      })
+    );
+  };
+
   return (
     <AssignmentContext.Provider
       value={{
         assignments,
+        getSingleAssignment,
         getClassAssignments,
         addAssignment,
-        deleteAssignment
+        deleteAssignment,
+        editAssignment
       }}
     >
       {props.children}

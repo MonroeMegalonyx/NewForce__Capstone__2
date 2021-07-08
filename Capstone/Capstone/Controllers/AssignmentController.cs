@@ -21,6 +21,18 @@ namespace Capstone.Controllers
             _assignmentRepository = assignmentRepository;
         }
 
+        // GET api/<AssignmentController>/
+        [HttpGet]
+        public IActionResult GetOne(int id)
+        {
+            var assignment = _assignmentRepository.GetAssignment(id);
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+            return Ok(assignment);
+        }
+
         // GET api/<AssignmentController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -46,6 +58,20 @@ namespace Capstone.Controllers
         public IActionResult Delete(int id)
         {
             _assignmentRepository.DeleteAssignment(id);
+            return NoContent();
+        }
+
+        // PUT api/<AssignmentController>/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Assignment assignment)
+
+        {
+            if (id != assignment.Id)
+            {
+                return BadRequest();
+            }
+
+            _assignmentRepository.EditAssignment(assignment);
             return NoContent();
         }
     }
